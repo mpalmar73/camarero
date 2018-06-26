@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class MyServiceService {
-  public myURL = "http://localhost/kk2";
+  public myURL = "https://pruebaazure20180620024957.azurewebsites.net";
 
   constructor(private httpClient: HttpClient) { 
 
@@ -19,6 +19,13 @@ export class MyServiceService {
 
   public hola(): void {
     this.httpClient.get<object>(this.myURL+"/api/values/hola").subscribe((resp)=> {
+      console.log(resp);
+    }, (err) => console.log(err));
+  }
+
+  public sendPushSubscription(obj: any) : void
+  {
+    this.httpClient.post<object>(this.myURL+"/api/values/pushsubscription",obj).subscribe((resp)=> {
       console.log(resp);
     }, (err) => console.log(err));
   }
